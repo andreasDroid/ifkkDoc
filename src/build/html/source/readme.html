@@ -50,6 +50,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#sadan-kommer-du-i-gang">Sådan kommer du i gang</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#forudsaetninger">Forudsætninger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data">Data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="fleetmanager.data_access.html">fleetmanager.data_access package</a></li>
@@ -87,8 +88,7 @@
 <section id="indledning">
 <h2>Indledning<a class="headerlink" href="#indledning" title="Permalink to this heading"></a></h2>
 <p>Dette repositorie indeholder simuleringstoolet som er udviklet i løbet af AI-signaturprojektet Intelligent flådestyring og klimasmarte kørselsmønstre (<a class="reference external" href="https://ifkk.syddjurs.dk/forside/">https://ifkk.syddjurs.dk/forside/</a>).</p>
-<p><span class="raw-html-m2r"><br></span>Dokumentationen er delt i to dele, en teknisk del rettet imod udviklere og leverandører og en anvendelsesorienteret rettet imod slutbrugere. Den tekniske del findes i det Github-repositorie som er tilknyttet projektet, <a class="reference external" href="https://github.com/syddjurs/IFKK/blob/master/dashboard/documentation/build/html/index.html">https://github.com/syddjurs/IFKK/blob/master/dashboard/documentation/build/html/index.html</a>. Den anvendelsesorienterede dokumentation findes i <a class="reference external" href="https://github.com/syddjurs/IFKK/blob/master/dashboard/documentation/simuleringstool_dokumentation_DA.docx">https://github.com/syddjurs/IFKK/blob/master/dashboard/documentation/simuleringstool_dokumentation_DA.docx</a>.
-Simuleringstoolet er udviklet i fase 1 er ikke en færdig løsning, men en funktionel prototype af den endelige løsning. Den funktionelle prototype vil kunne anvendes som udgangspunkt for den videre udvikling af værktøjet i fase 2.</p>
+<p>Dokumentationen er delt i to dele, en teknisk del rettet imod udviklere og leverandører og en anvendelsesorienteret rettet imod slutbrugere. Den tekniske del findes i det Github-repositorie som er tilknyttet projektet, <a class="reference external" href="https://andreasdroid.github.io/ifkkDoc/src/build/html/index.html">https://andreasdroid.github.io/ifkkDoc/src/build/html/index.html</a>. Den anvendelsesorienterede dokumentation findes i <a class="reference external" href="https://andreasdroid.github.io/ifkkDoc/src/build/ifkk_dokumentation.pdf">https://andreasdroid.github.io/ifkkDoc/src/build/ifkk_dokumentation.pdf</a>.</p>
 </section>
 <section id="repository-oversigt">
 <h2>Repository oversigt<a class="headerlink" href="#repository-oversigt" title="Permalink to this heading"></a></h2>
@@ -116,13 +116,13 @@ Specifikt, deles applikationen op 3 typer simulering:</p>
 <ol class="arabic">
 <li><p>CO2e-orienteret simulering. En simulering, hvor køretøjer med lavere CO2e aftryk prioriteres. Giver ikke nødvendigs det absolutte lavest CO2e aftryk.</p></li>
 <li><p>Intelligent simulering. En optimal simulering, hvor køretøjets variable pris pr. km. afvejes med dets CO2e aftryk. Her vægtes på køretøjets attributter således turene allokeres biler på den mest optimale måde.</p></li>
-<li><p>Målsimulering. En optimering på flådesammensætning, hvor delflåden optimeres på både CO2e og omkostning, hvor flåden samtidig tilfredsstiller kørselsbehovet.
+<li><p>Målsimulering. En optimering på flådesammensætning, hvor delflåden optimeres på både CO2e og omkostning og hvor flåden samtidig tilfredsstiller kørselsbehovet.
 ### Teknisk overblik</p>
-<a class="reference external image-reference" href="src/_build/ark.png"><img alt="This is an image" src="source/src/_build/ark.png" /></a>
+<a class="reference external image-reference" href="src/build/ark.png"><img alt="Package relationship" src="source/src/build/ark.png" /></a>
 </li>
 </ol>
 <p>Simuleringstoolet er udviklet i python på backenden og brugergrænsefladen er ligeledes opsat med python-biblioteket Dash.
-Dokumentationen på de enkelte dele af koden er at finde i det tilhørende Github-projekt, <a class="reference external" href="https://github.com/syddjurs/IFKK">https://github.com/syddjurs/IFKK</a>.</p>
+Dokumentationen på de enkelte dele af koden er at finde i det tilhørende Github-projekt, <a class="reference external" href="https://github.com/syddjurs/IFKK">https://github.com/syddjurs/IFKK</a> eller på <a class="reference external" href="https://andreasdroid.github.io/ifkkDoc/src/build/html/index.html">https://andreasdroid.github.io/ifkkDoc/src/build/html/index.html</a></p>
 <section id="extractors">
 <h3>Extractors<a class="headerlink" href="#extractors" title="Permalink to this heading"></a></h3>
 <p>I dette repository findes to moduler udviklet for at trække data fra flådestyringssystemerne; FleetComplete <code class="docutils literal notranslate"><span class="pre">FleetCompleteExtractor</span></code> og SkyHost <code class="docutils literal notranslate"><span class="pre">SkyHostExtractor</span></code>.
@@ -176,6 +176,13 @@ Der kan med fordel oprettes en <code class="docutils literal notranslate"><span 
  <span class="o">*</span> <span class="n">Running</span> <span class="n">on</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8050</span><span class="o">/</span> <span class="p">(</span><span class="n">Press</span> <span class="n">CTRL</span><span class="o">+</span><span class="n">C</span> <span class="n">to</span> <span class="n">quit</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this heading"></a></h2>
+<p>Applikationen er afhængig af data på tilladte startsteder, biler (inkl. metadata) og ikke mindst rundture. I applikation run-time er alle tabeller påkrævet,
+på-nær: <code class="docutils literal notranslate"><span class="pre">trips</span></code> og <code class="docutils literal notranslate"><span class="pre">leasing_types</span></code>. <code class="docutils literal notranslate"><span class="pre">RoundTrips</span></code> vil altid kun indeholde GPS-koordinater der er tæt på det tilladte startsted (+- x antal meter, den tilladte distance defineret i extractor’en).
+For at læse mere om hvor data stammer fra, hvilke forudsætninger der er og hvilke antagelser der laves, refereres til <code class="docutils literal notranslate"><span class="pre">FleetCompleteExtractor</span></code> eller <code class="docutils literal notranslate"><span class="pre">SkyhostExtractor</span></code> eller den fulde dokumentation på data og algortimer her: <a class="reference external" href="https://andreasdroid.github.io/ifkkDoc/src/build/ifkk_dokumentation.pdf">https://andreasdroid.github.io/ifkkDoc/src/build/ifkk_dokumentation.pdf</a></p>
+<a class="reference external image-reference" href="src/build/er.png"><img alt="ER diagram" src="source/src/build/er.png" /></a>
 </section>
 </section>
 
